@@ -181,6 +181,7 @@ fn main() {
                     // Map to viewport coordinates.
                     let (x, y) = ((x as f32 / dimensions.0 as f32) * 2.0 - 1.0,
                                   (y as f32 / dimensions.1 as f32) * 2.0 - 1.0);
+                    let (x, y) = (x / screen_to_plane[0], y / screen_to_plane[1]);
 
                     // Set the fold radius.
                     fold_radius = f32::sqrt(x*x + y*y);

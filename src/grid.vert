@@ -5,7 +5,7 @@ uniform float fold_radius;
 in vec2 position;
 
 void main() {
-  vec2 plane = screen_to_plane * position;
+  vec2 plane = position;
   float len = length(plane);
   if (len < 0.001) {
     gl_Position = vec4(plane, 0.0, 1.0);
@@ -23,5 +23,5 @@ void main() {
     }
   }
 
-  gl_Position = vec4(normal * len, 0.0, 1.0);
+  gl_Position = vec4(screen_to_plane * (normal * len), 0.0, 1.0);
 }
