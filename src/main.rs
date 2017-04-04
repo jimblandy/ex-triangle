@@ -5,11 +5,9 @@ extern crate cgmath;
 
 use cgmath::{SquareMatrix, Matrix3, Vector2};
 
-use glium::{IndexBuffer, Program, Surface, VertexBuffer};
+use glium::{DrawParameters, IndexBuffer, Program, Surface, VertexBuffer};
 use glium::glutin::Event;
 use glium::index::PrimitiveType;
-
-use std::f32::consts::PI;
 
 /// A hexagonal grid. You give the constructor the grid's origin, size and
 /// rotation, and it gives you get a value that can turn (i, j) index pairs into
@@ -140,7 +138,10 @@ fn main() {
     }
     let hex_indices = IndexBuffer::new(&display, PrimitiveType::LinesList, &hex_indices)
         .expect("creating hex grid index buffer");
-    let hex_draw_params = Default::default();
+    let hex_draw_params = DrawParameters {
+        line_width: Some(2.0),
+        .. Default::default()
+    };
 
     let grid_program = Program::from_source(&display,
                                             include_str!("grid.vert"),
