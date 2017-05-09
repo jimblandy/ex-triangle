@@ -29,17 +29,16 @@ fn main() {
         .expect("Opening main window");
 
     let mut vertices: Vec<Point> = Vec::new();
-    vertices.push(Point { position: [-0.5, 0.5] });
-    vertices.push(Point { position: [0.0, -0.5] });
-    vertices.push(Point { position: [0.5, 0.3] });
-    vertices.push(Point { position: [0.7, 0.5] });
-    vertices.push(Point { position: [0.5, 0.8] });
+    vertices.push(Point { position: [ 1.0,  1.0] });
+    vertices.push(Point { position: [-1.0,  1.0] });
+    vertices.push(Point { position: [-1.0, -1.0] });
+    vertices.push(Point { position: [ 1.0, -1.0] });
 
     let vertex_buf = VertexBuffer::new(&display, &vertices)
         .expect("creating vertex buffer");
 
     let indices: Vec<u32> = vec![0, 1, 2,
-                                 2, 3, 4];
+                                 2, 3, 0];
 
     let index_buf = IndexBuffer::new(&display, PrimitiveType::TrianglesList, &indices)
         .expect("creating index buffer");
@@ -49,7 +48,7 @@ fn main() {
 
     let program = Program::from_source(&display,
                                        include_str!("tri.vert"),
-                                       include_str!("tri.frag"),
+                                       include_str!("dot.frag"),
                                        None)
         .expect("Compiling shader program");
 
