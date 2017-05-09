@@ -48,8 +48,8 @@ fn main() {
     };
 
     let program = Program::from_source(&display,
-                                       include_str!("grid.vert"),
-                                       include_str!("grid.frag"),
+                                       include_str!("tri.vert"),
+                                       include_str!("tri.frag"),
                                        None)
         .expect("Compiling shader program");
 
